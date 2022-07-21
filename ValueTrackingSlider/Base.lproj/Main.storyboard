@@ -11,33 +11,57 @@
         <!--View Controller-->
         <scene sceneID="wYH-lv-tU2">
             <objects>
-                <viewController id="EUi-bj-vpP" customClass="ViewController" customModule="sliderSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EUi-bj-vpP" customClass="ViewController" customModule="ValueTrackingSlider" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4M-L1-X8v">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wbZ-AS-nrV" customClass="ASValueTrackingSlider" customModule="sliderSwift" customModuleProvider="target">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wbZ-AS-nrV" customClass="ASValueTrackingSlider" customModule="ValueTrackingSlider" customModuleProvider="target">
                                 <rect key="frame" x="47" y="611" width="320" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="7hw-qF-8E4"/>
                                 </constraints>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Mu8-In-xsa" customClass="ASValueTrackingSlider" customModule="sliderSwift" customModuleProvider="target">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mu8-In-xsa" customClass="ASValueTrackingSlider" customModule="ValueTrackingSlider" customModuleProvider="target">
                                 <rect key="frame" x="47" y="270" width="320" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="rgp-2D-hBN"/>
                                 </constraints>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOj-AP-dLJ">
+                                <rect key="frame" x="95" y="338" width="70" height="30"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <state key="normal" title="Show Tics">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="showTics:" destination="EUi-bj-vpP" eventType="touchUpInside" id="HW6-hP-evL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXC-EM-avr">
+                                <rect key="frame" x="255" y="338" width="88" height="30"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <state key="normal" title="Remove Tics">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="RemoveTics:" destination="EUi-bj-vpP" eventType="touchUpInside" id="DU0-N0-wsy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="W6Q-G6-ZlA"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
                             <constraint firstItem="Mu8-In-xsa" firstAttribute="centerX" secondItem="t4M-L1-X8v" secondAttribute="centerX" id="64W-El-vRm"/>
                             <constraint firstItem="W6Q-G6-ZlA" firstAttribute="bottom" secondItem="wbZ-AS-nrV" secondAttribute="bottom" constant="222" id="EyZ-Di-T61"/>
                             <constraint firstItem="Mu8-In-xsa" firstAttribute="top" secondItem="W6Q-G6-ZlA" secondAttribute="top" constant="226" id="J99-bE-ewu"/>
                             <constraint firstItem="wbZ-AS-nrV" firstAttribute="centerX" secondItem="t4M-L1-X8v" secondAttribute="centerX" id="TfZ-te-2em"/>
                             <constraint firstItem="Mu8-In-xsa" firstAttribute="leading" secondItem="wbZ-AS-nrV" secondAttribute="leading" id="TkH-V4-bc7"/>
+                            <constraint firstItem="zXC-EM-avr" firstAttribute="centerX" secondItem="t4M-L1-X8v" secondAttribute="centerX" constant="92" id="WIK-kS-y1E"/>
+                            <constraint firstItem="zXC-EM-avr" firstAttribute="baseline" secondItem="QOj-AP-dLJ" secondAttribute="baseline" id="dhT-gu-qIC"/>
+                            <constraint firstItem="QOj-AP-dLJ" firstAttribute="centerX" secondItem="t4M-L1-X8v" secondAttribute="centerX" constant="-77" id="jOt-5t-ZdB"/>
                             <constraint firstItem="Mu8-In-xsa" firstAttribute="leading" secondItem="W6Q-G6-ZlA" secondAttribute="leading" constant="49" id="kBd-Jo-xSb"/>
+                            <constraint firstItem="QOj-AP-dLJ" firstAttribute="top" secondItem="Mu8-In-xsa" secondAttribute="bottom" constant="39" id="ly5-YQ-Cjk"/>
                             <constraint firstItem="Mu8-In-xsa" firstAttribute="trailing" secondItem="wbZ-AS-nrV" secondAttribute="trailing" id="rt4-QB-2v3"/>
                         </constraints>
                     </view>
@@ -54,6 +78,12 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

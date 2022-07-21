@@ -7,7 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController  , ASValueTrackingSliderDataSource{
+class ViewController: UIViewController  , ASValueTrackingSliderDataSource, ASValueTrackingSliderDelegate{
+    func sliderWillDisplayPopUpView(_ slider: ASValueTrackingSlider?) {
+        
+    }
+    
+    
     func slider(_ slider: ASValueTrackingSlider?, stringForValue value: Float) -> String? {
             var value = value
             value = roundf(value)
@@ -22,17 +27,33 @@ class ViewController: UIViewController  , ASValueTrackingSliderDataSource{
             return s
         }
     
-    
     @IBOutlet weak var slider2: ASValueTrackingSlider!
     @IBOutlet weak var slider3: ASValueTrackingSlider!
+    
+    
+    
+    @IBAction func showTics(_ sender: Any) {
+        slider2.placeTicMarksAt(ticArray: [2,4,5,6,8])
+        slider2.setIsTickType(TickType : true)
+        
+    }
+    
+    @IBAction func RemoveTics(_ sender: Any) {
+       // slider2.placeTicMarksAt(ticArray: [2,4,5,6,8])
+        slider2.setIsTickType(TickType : false)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        slider2.delegate = self
         self.slider2.font =  UIFont(name: "Futura-CondensedExtraBold", size: 26)
         slider2.popUpViewAnimatedColors = [UIColor.blue , UIColor.red, UIColor.orange]
-
         self.slider2.showPopUpView(animated: true)
+        slider2.value = 5
+        slider2.thumbTintColor = #colorLiteral(red: 0, green: 0.6692362428, blue: 0, alpha: 0.2844960387)
+
+        
         
         
         let tempFormatter = NumberFormatter()

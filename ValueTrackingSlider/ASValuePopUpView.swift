@@ -96,7 +96,7 @@ class ASValuePopUpView: UIView, CAAnimationDelegate {
             anim.duration = animDuration
             return anim
         } else {
-            return NSNull() as? CAAction
+            return NSNull() //as? CAAction
         }
     }
 
@@ -203,6 +203,8 @@ class ASValuePopUpView: UIView, CAAnimationDelegate {
 
     // _shouldAnimate = YES; causes 'actionForLayer:' to return an animation for layer property changes
     // call the supplied block, then set _shouldAnimate back to NO
+    
+    // - (void)animateBlock:(void (^)(CFTimeInterval duration))block
     func animateBlock(_ block: @escaping (_ duration: CFTimeInterval) -> Void) {
         shouldAnimate = true
         animDuration = 0.5
@@ -346,11 +348,12 @@ class ASValuePopUpView: UIView, CAAnimationDelegate {
 }
 
 extension CALayer {
-    func animateKey(
-        _ animationName: String?,
-        fromValue: Any?,
-        toValue: Any?,
-        customize block: @escaping (_ animation: CABasicAnimation?) -> Void
+    
+    // - (void)animateKey:(NSString *)animationName fromValue:(id)fromValue toValue:(id)toValue customize:(void(^)(CABasicAnimation *animation))block
+    
+    
+
+    func animateKey(_ animationName: String?,fromValue: Any?,toValue: Any?, customize block: @escaping (_ animation: CABasicAnimation?) -> Void
     ) {
         setValue(toValue, forKey: animationName ?? "")
         let anim = CABasicAnimation(keyPath: animationName)
@@ -363,4 +366,8 @@ extension CALayer {
     }
 }
 
-//}
+
+
+
+// - (void)animateBlock:(void (^)(CFTimeInterval duration))block
+//func animateBlock(_ block: @escaping (_ duration: CFTimeInterval) -> Void) {

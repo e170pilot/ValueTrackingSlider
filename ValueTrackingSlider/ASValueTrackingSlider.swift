@@ -12,6 +12,95 @@ import UIKit
 class ASValueTrackingSlider: UISlider, ASValuePopUpViewDelegate {
 
 
+    var  isTickType : Bool = false
+    var  trackFrame : CGRect!
+    var ticsAt : [CGFloat]!
+    var prayers : CGFloat!
+    var tickview : UIView!
+    
+    
+    func setIsTickType(TickType : Bool){
+        self.isTickType = TickType
+        if (TickType) {
+            if (tickview != nil) {
+                tickview.isHidden = false
+                self.addSubview(tickview)
+            }
+        }else{
+            tickview.isHidden = true;
+            tickview.removeFromSuperview()
+        }
+    }
+    
+    
+    func placeTicMarksAt(ticArray : [CGFloat]) {
+        
+        self.ticsAt = ticArray
+        trackFrame = self.trackRect(forBounds: self.bounds)
+        let numberOfTics = ticsAt.count
+        let  min = self.minimumValue
+        let max = self.maximumValue
+        let trackwidth = trackFrame.size.width -  self.thumbRect().size.width + 4
+        
+        let thumbWidth =  self.thumbRect().size.width / 2.0
+        // NSLog(@"%.2f", trackwidth);
+       // tickview = UIView(frame: CGRect.zero)
+       // tickview.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y,self.frame.size.width, self.frame.size.height);
+        tickview = UIView(frame: CGRect.zero)
+        tickview.backgroundColor = UIColor.clear
+        
+        for i in 0..<numberOfTics {
+            
+            var tic  = ticsAt[i] / CGFloat((max - min)) * trackwidth
+            if ( i == 0) {
+                tic += 0
+            }
+            if (i == numberOfTics - 1) {
+                tic -=  0
+            }
+            tic += thumbWidth
+            
+            let tick = UIView(frame: CGRect(x: tic, y: (self.frame.size.height - 30) / 2  , width: 2, height: 30))
+            tick.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+           // tick.layer.shadowColor = UIColor.white.cgColor
+            tick.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+            tick.layer.shadowOpacity = 1.0
+            tick.layer.shadowRadius = 0.0
+            tickview.addSubview(tick)
+        }
+    }
+    
+    func drawBackground() -> UIView {
+
+        let noOfTicks = ticsAt.count
+        // let stepValue = self.frame.size.width / noOfTicks
+        let tickwidth = self.frame.size.width; // noOfTicks
+        // var xPos = self.frame.origin.x
+        // initialize view to return
+        let tickview = UIView(frame: self.frame)
+        var xPos = tickview.frame.origin.x;
+        tickview.backgroundColor = UIColor.clear;
+        // make a UIImageView with tick for each tick in the slider
+        for i in 0..<noOfTicks {
+            
+            let tic = ticsAt[i]  / 24.0 *  tickwidth
+            
+            let tick = UIView(frame: CGRect(x: tic, y: -10, width: 1, height: 30))
+           // UIView* tick =  [[UIView alloc] initWithFrame:CGRectMake(tic, -10, 1, 10)]; //  UIView.init(frame: CGRect.init(x: tic, y: 0 / 2, width: 1, height: 10))
+            //  UIView *tick = [[UIView alloc] initWithFrame:CGRectMake(xPos,((self.frame.size.height - 10)/2),1, 10)];
+            tick.backgroundColor = UIColor.gray ;// init(white: 0.7, alpha: 1) // [UIColor colorWithWhite:0.7 alpha:1];
+            tick.layer.shadowColor = UIColor.white.cgColor; // [[UIColor whiteColor] CGColor];
+            tick.layer.shadowOffset = CGSize(width: 0.0, height: 0.0);// CGSize.init(width: 0.0, height: 0.0) //  CGSizeMake(0.0f, 1.0f);
+            tick.layer.shadowOpacity = 1.0;
+            tick.layer.shadowRadius = 1;
+            tickview.addSubview(tick) // [tickview insertSubview:tick belowSubview:self];
+            xPos += (tickwidth );
+        }
+        return tickview;
+        
+    }
+    
+    
     private var keyTimes: [AnyHashable]?
     private var valueRange: CGFloat = 0.0
 
@@ -231,12 +320,8 @@ class ASValueTrackingSlider: UISlider, ASValuePopUpViewDelegate {
 
     // returns the current offset of UISlider value in the range 0.0 – 1.0
     var currentValueOffset: CGFloat {
-        get {
             return CGFloat((value - minimumValue)) / valueRange
-        }
-        set {
-            self.currentValueOffset = newValue
-        }
+
     }
 
     // MARK: - private
@@ -264,6 +349,9 @@ class ASValueTrackingSlider: UISlider, ASValuePopUpViewDelegate {
 
         textColor = UIColor.white
         font = UIFont.boldSystemFont(ofSize: 22.0)
+        
+        
+        trackFrame = self.trackRect(forBounds: self.bounds)
     }
 
     // ensure animation restarts if app is closed then becomes active again
@@ -444,12 +532,33 @@ class ASValueTrackingSlider: UISlider, ASValuePopUpViewDelegate {
 
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
-        if !popUpViewAlwaysOn {
-            _hidePopUpView(animated: true)
+        if !popUpViewAlwaysOn { _hidePopUpView(animated: true) }
+        
+        
+        if (isTickType) {
+            var previuosTick : CGFloat = 0
+            for i in 0...ticsAt.count  {
+                let tic =  i == ticsAt.count  ? CGFloat(self.maximumValue) : ticsAt[i]
+                previuosTick = i == 0  ? CGFloat(self.minimumValue) : ticsAt[i - 1]
+               // if ( previuosTick  == _ticsAt.count ) { tickPlace =  self.maximumValue;}
+                let value = CGFloat(self.value)
+                if (tic > value) {
+                    let halfDistance = (tic - previuosTick) / 2.0
+                    if (value > previuosTick + halfDistance ) {
+                        self.value = Float(tic)
+                     //   NSLog(@"%.2f", tic);
+                        break;
+                    } else {
+                        self.value = Float(previuosTick)
+                      //  NSLog(@"%.2f", self.value);
+                        break;
+                    }
+                }
+            } // end of for loop
+            self.updatePopUpView()
         }
     }
 }
-
 // to supply custom text to the popUpView label, implement <ASValueTrackingSliderDataSource>
 // the dataSource will be messaged each time the slider value changes
 protocol ASValueTrackingSliderDataSource: NSObjectProtocol {
