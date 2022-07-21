@@ -1,24 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EUi-bj-vpP">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="wYH-lv-tU2">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="EUi-bj-vpP" customClass="ViewController" customModule="sliderSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t4M-L1-X8v">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wbZ-AS-nrV" customClass="ASValueTrackingSlider" customModule="sliderSwift" customModuleProvider="target">
+                                <rect key="frame" x="47" y="611" width="320" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="7hw-qF-8E4"/>
+                                </constraints>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Mu8-In-xsa" customClass="ASValueTrackingSlider" customModule="sliderSwift" customModuleProvider="target">
+                                <rect key="frame" x="47" y="270" width="320" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="rgp-2D-hBN"/>
+                                </constraints>
+                            </slider>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="W6Q-G6-ZlA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Mu8-In-xsa" firstAttribute="centerX" secondItem="t4M-L1-X8v" secondAttribute="centerX" id="64W-El-vRm"/>
+                            <constraint firstItem="W6Q-G6-ZlA" firstAttribute="bottom" secondItem="wbZ-AS-nrV" secondAttribute="bottom" constant="222" id="EyZ-Di-T61"/>
+                            <constraint firstItem="Mu8-In-xsa" firstAttribute="top" secondItem="W6Q-G6-ZlA" secondAttribute="top" constant="226" id="J99-bE-ewu"/>
+                            <constraint firstItem="wbZ-AS-nrV" firstAttribute="centerX" secondItem="t4M-L1-X8v" secondAttribute="centerX" id="TfZ-te-2em"/>
+                            <constraint firstItem="Mu8-In-xsa" firstAttribute="leading" secondItem="wbZ-AS-nrV" secondAttribute="leading" id="TkH-V4-bc7"/>
+                            <constraint firstItem="Mu8-In-xsa" firstAttribute="leading" secondItem="W6Q-G6-ZlA" secondAttribute="leading" constant="49" id="kBd-Jo-xSb"/>
+                            <constraint firstItem="Mu8-In-xsa" firstAttribute="trailing" secondItem="wbZ-AS-nrV" secondAttribute="trailing" id="rt4-QB-2v3"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="slider2" destination="Mu8-In-xsa" id="TdO-i9-2zF"/>
+                        <outlet property="slider3" destination="wbZ-AS-nrV" id="pCh-Yt-0Sm"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G17-uU-0BK" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="78.348214285714278"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

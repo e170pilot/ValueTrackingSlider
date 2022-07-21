@@ -13,6 +13,8 @@
 		98D5ED0D2889BB8000BB2D95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D5ED0B2889BB8000BB2D95 /* Main.storyboard */; };
 		98D5ED0F2889BB8100BB2D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D5ED0E2889BB8100BB2D95 /* Assets.xcassets */; };
 		98D5ED122889BB8100BB2D95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D5ED102889BB8100BB2D95 /* LaunchScreen.storyboard */; };
+		98D5ED1C2889BBC600BB2D95 /* ASValuePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D5ED1A2889BBC600BB2D95 /* ASValuePopUpView.swift */; };
+		98D5ED1D2889BBC600BB2D95 /* ASValueTrackingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D5ED1B2889BBC600BB2D95 /* ASValueTrackingSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		98D5ED0E2889BB8100BB2D95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98D5ED112889BB8100BB2D95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98D5ED132889BB8100BB2D95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98D5ED1A2889BBC600BB2D95 /* ASValuePopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASValuePopUpView.swift; sourceTree = "<group>"; };
+		98D5ED1B2889BBC600BB2D95 /* ASValueTrackingSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASValueTrackingSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		98D5ED042889BB8000BB2D95 /* ValueTrackingSlider */ = {
 			isa = PBXGroup;
 			children = (
+				98D5ED1A2889BBC600BB2D95 /* ASValuePopUpView.swift */,
+				98D5ED1B2889BBC600BB2D95 /* ASValueTrackingSlider.swift */,
 				98D5ED052889BB8000BB2D95 /* AppDelegate.swift */,
 				98D5ED072889BB8000BB2D95 /* SceneDelegate.swift */,
 				98D5ED092889BB8000BB2D95 /* ViewController.swift */,
@@ -138,8 +144,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				98D5ED0A2889BB8000BB2D95 /* ViewController.swift in Sources */,
+				98D5ED1C2889BBC600BB2D95 /* ASValuePopUpView.swift in Sources */,
 				98D5ED062889BB8000BB2D95 /* AppDelegate.swift in Sources */,
 				98D5ED082889BB8000BB2D95 /* SceneDelegate.swift in Sources */,
+				98D5ED1D2889BBC600BB2D95 /* ASValueTrackingSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +297,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YF5KEJRYN3;
 				INFOPLIST_FILE = ValueTrackingSlider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,6 +317,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YF5KEJRYN3;
 				INFOPLIST_FILE = ValueTrackingSlider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
